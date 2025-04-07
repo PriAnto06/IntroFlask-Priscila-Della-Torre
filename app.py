@@ -11,7 +11,7 @@ def hello():
 def chau():
     return 'Bye'
 
-@app.numero('/sumar/<int:n1>/<int:2>')
+@app.route('/sumar/<int:n1>/<int:n2>')
 def sum(n1,n2):
     s = n1+n2
-    return f'<p>(n1)+(n2)=s</p>'
+    return f'<p>  {n1}+{n2}={s} </p>'
