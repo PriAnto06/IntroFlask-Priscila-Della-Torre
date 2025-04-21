@@ -72,15 +72,19 @@ def sum(n1,n2):
 def datos_plantilla(id):
     abrirConexion()
     cursor = db.cursor()
-    cursor.execute("SELECT id,usuario,email FROM usuarios WHERE id = ?",(id,))
+    cursor.execute("SELECT id,usuario,email,direccion,telefono FROM usuarios WHERE id = ?",(id,))
     res =cursor.fetchone()#cuando no hay nada me devuelve none(nada)
     cerrarConexion()
     usuario = None
     email = None
+    direccion = None
+    telefono = None
     if res != None:
         usuario=res['usuario']
         email=res ['email']
-    return render_template("datos.html",id=id,usuario=usuario,email=email)     
+        direccion=res ['direccion']
+        telefono=res ['telefono']
+    return render_template("datos.html",id=id,usuario=usuario,email=email,direccion=direccion,telefono=telefono)     
 
 
     #registros = res ["cant"]
