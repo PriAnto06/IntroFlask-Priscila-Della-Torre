@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import sqlite3 
 
 app = Flask(__name__)
@@ -66,3 +66,23 @@ def sum(n1,n2):
     s = n1+n2
     return f'<p>  {n1}+{n2}={s} </p>'
 
+#21-04-25
+
+@app.route('/mostrar-datos/<int:id>')
+def datos_plantilla(id):
+    abrirConexion()
+    cursor = db.cursor()
+    cursor.execute("SELECT id,usuario,email FROM usuarios WHERE id = ?",(id,))
+    res =cursor.fetchone()#cuando no hay nada me devuelve none(nada)
+    cerrarConexion()
+    usuario = None
+    email = None
+    if res != None:
+        usuario=res['usuario']
+        email=res ['email']
+    return render_template("datos.html",id=id,usuario=usuario,email=email)     
+
+
+    #registros = res ["cant"]
+    #cerrarConexion()
+    #return f"Hay {registros} registros en la tabla de ususario"
