@@ -66,7 +66,7 @@ def sum(n1,n2):
     s = n1+n2
     return f'<p>  {n1}+{n2}={s} </p>'
 
-#28-04-25
+#21-04-25 y 28-04-25 
 @app.route('/mostrar-datos2/<int:id>')
 def datos_plantilla2(id):
     abrirConexion()
@@ -86,6 +86,18 @@ def datos_plantilla2(id):
     return render_template("datos.html",id=id,usuario=usuario,email=email,direccion=direccion,telefono=telefono) 
 
 
-    #registros = res ["cant"]
-    #cerrarConexion()
-    #return f"Hay {registros} registros en la tabla de ususario"
+def buscar_usuarios():
+    
+
+@app.route('/usuarios')
+def lista_usuarios():
+    usuarios = buscar_usuarios()
+    return render_template('usuarios.html', usuarios=usuarios)
+
+@app.route('/usuario/<int:usuario_id>')
+def ver_usuario(usuario_id):
+    usuario = ver_usuario(usuario_id)
+    if usuario:
+        return render_template('usuario.html', usuario=usuario)
+    else:
+        return "Usuario no encontrado"
