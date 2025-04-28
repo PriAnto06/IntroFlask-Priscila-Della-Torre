@@ -66,10 +66,9 @@ def sum(n1,n2):
     s = n1+n2
     return f'<p>  {n1}+{n2}={s} </p>'
 
-#21-04-25
-
-@app.route('/mostrar-datos/<int:id>')
-def datos_plantilla(id):
+#28-04-25
+@app.route('/mostrar-datos2/<int:id>')
+def datos_plantilla2(id):
     abrirConexion()
     cursor = db.cursor()
     cursor.execute("SELECT id,usuario,email,direccion,telefono FROM usuarios WHERE id = ?",(id,))
@@ -84,7 +83,7 @@ def datos_plantilla(id):
         email=res ['email']
         direccion=res ['direccion']
         telefono=res ['telefono']
-    return render_template("datos.html",id=id,usuario=usuario,email=email,direccion=direccion,telefono=telefono)     
+    return render_template("datos.html",id=id,usuario=usuario,email=email,direccion=direccion,telefono=telefono) 
 
 
     #registros = res ["cant"]
